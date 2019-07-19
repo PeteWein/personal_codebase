@@ -1,10 +1,8 @@
 import sys, datetime, json, requests, time
-import pdb
 
 # The goal is to do a basic API call to our user and see their info.
 # It can definitely be improved (i.e. sort by top to determine top comment)
 # this call is limited to what is stored on the reddit API (I believe there's a time frame limit or last 1000 limit)
-
 
 def main():                           
     user = input('What username would you like to look up? ')
@@ -67,9 +65,9 @@ class UserInfo(object):
                     self.req = requests.get(self.requesturl, headers={'User-agent': '/u/DasWeinmachine'})
                 count = data['data']['dist']
                 apiloop = count == 100              # break loop if comments pulled less than max
-        except KeyError as e:
+        except:
             print('Error requesting info for user /u/'+ self.user, end='\n'), \
-            print('KeyError: ' + str(e))
+            print('Error ' + str(data['error']) + ': ' + data['message'], end='')
             sys.exit()
         return comment_count, total_score, max_score, max_score_comment, max_score_link
 

@@ -41,6 +41,7 @@ class InitialSetup(object):
     
     def explain_rules(self):
         print('\nWell hello there, ' + self.name + '!',end = '\n\n')
+        print('This is where the rules will go', end = '.')        
 
     def setup_path(self):
         # set up the path

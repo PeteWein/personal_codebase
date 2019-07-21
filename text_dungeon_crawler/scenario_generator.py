@@ -4,13 +4,23 @@ data = {}
 data['scenarios'] = [
     {
         "id": 1, 
-        "description": "Scenario 1", 
+        "description": "You see a large golden orb sitting on top of a pedestal. Some sort of god-like statue looms above the room.\n A small door stands nearby.", 
         "options": [
-            "Opt 1", 
-            "Opt 2", 
-            "Opt 3"
+            "Brazenly take the golden orb", 
+            "Replace the orb with a similar looking adjacent rock", 
+            "Dilligently inspect the alter"
+        ],
+        "outcome": [
+            "A rolling boulder falls from a trapdoor above you and crushes you.",
+            "You hear only silence and are able to escape out a nearby door.",
+            "As you inspect the alter, you suddenly feel an arrow from a triggered trap pierce your side. Everything goes dark..."
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
-    }, 
+    },
     {
         "id": 2, 
         "description": "Scenario 2", 
@@ -18,6 +28,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     }, 
     {
@@ -27,6 +47,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -36,6 +66,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -45,6 +85,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -54,6 +104,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -63,6 +123,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -72,6 +142,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -81,6 +161,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -90,6 +180,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -99,6 +199,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -108,6 +218,16 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     },
     {
@@ -117,19 +237,24 @@ data['scenarios'] = [
             "Opt 1", 
             "Opt 2", 
             "Opt 3"
-        ]
-    },
-    {
-        "id": 14, 
-        "description": "Scenario 3", 
-        "options": [
-            "Opt 1", 
-            "Opt 2", 
-            "Opt 3"
+        ],
+        "outcome": [
+            "Out 1",
+            "Out 2",
+            "Out 3"
+        ],
+        "result": [
+            False,
+            True,
+            False,
         ]
     }
 ]
-
+data['flavor_moving'] = [
+    "You see another path open before you, as if the dungeon is mocking you.",
+    "These rooms seem somewhat similar to the previous set...have you been here before?",
+    "Are the rooms...moving as you move? It's as if this dungeon is alive."
+]
 
 
 with open('scenarios.json', 'w') as outfile:

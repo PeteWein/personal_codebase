@@ -7,10 +7,23 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 import pdb
 ################################################################
+"""
+TODO:
+-add ascii to binary (print out those cool titles!)
+    -https://docs.python.org/2/library/binascii.html
+-add more flavor text
+-add scenario creative content (in the scenario generator script)
+-either encode file (so users can't see it) or ensure script doesn't output a file
+-add in rules explanation
+-add keyword matching (help, exit)
+-add home screen
+
+"""
+################################################################
 def main(initial):
     while initial is True:
         init(strip=not sys.stdout.isatty())                                 # strip out any nasty business
-        # cprint(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))    # print the title!
+        # cprint(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))    # print the title! NOTE: .exe (end game) does not print ascii (non-binary)
         print('Peter\'s Dungeon Crawl')
         name = input('What is your name?\n')
         user = InitialSetup(name)
@@ -32,7 +45,8 @@ def main(initial):
             # cprint(figlet_format(continuepath[0], font='digital'))
             print(continuepath[0])
             path_text = randint(0, len(data['flavor_moving'])-1)            # funny flavor text
-            path = input(data['flavor_moving'][path_text], end='\n')
+            print(data['flavor_moving'][path_text], end='\n')
+            path = input()
             validpath = user.check_path(path, continuepath[1])    
             if validpath is False:                                          # path check flow
                 user.retry_flow(user, validpath, continuepath)

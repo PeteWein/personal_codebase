@@ -9,8 +9,6 @@ import pdb
 ################################################################
 """
 TODO:
--add ascii to binary (print out those cool titles!)
-    -https://docs.python.org/2/library/binascii.html
 -add more flavor text
 -add scenario creative content (in the scenario generator script)
 -either encode file (so users can't see it) or ensure script doesn't output a file
@@ -23,7 +21,7 @@ TODO:
 def main(initial):
     while initial is True:
         init(strip=not sys.stdout.isatty())                                 # strip out any nasty business
-        print(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))    # print the title! NOTE: .exe (end game) does not print ascii (non-binary)
+        print(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))     # title
         name = input('What is your name?\n')
         user = InitialSetup(name)
         data = user.generate_scenarios()                                    # bring in the data
@@ -35,7 +33,6 @@ def main(initial):
         if validpath is False:                                              # path check flow
             user.retry_flow(user, validpath, initialpath)
         roominfo = user.randomroom(data)
-        
         outcome = user.playroom(user, roominfo)                             # determine outcome
         while outcome is True and roominfo['id'] != 1:                      # continue playing loop
             continuepath = user.setup_path()
@@ -69,14 +66,13 @@ class InitialSetup(object):
         self.name = name
     
     def clearscreen(self):   
-        # for windows 
-        if name == 'nt': 
+        if name == 'nt':                                                    # for windows 
             _ = system('cls') 
         # for mac and linux(here, os.name is 'posix') 
         else: 
             _ = system('clear') 
     
-    def generate_scenarios(self):                       # generate scenarios json if it doesn't exist
+    def generate_scenarios(self):                                           # generate scenarios json if it doesn't exist
         if not path.isfile('scenarios.json'):
             scenario_generator
         with open('scenarios.json') as json_file:  
@@ -87,8 +83,7 @@ class InitialSetup(object):
         print('\nWell hello there, ' + self.name + '!',end = '\n\n')
         print('This is where the rules will go.', end = '\n')        
 
-    def setup_path(self):
-        # set up the path
+    def setup_path(self):                                                   # set up doors for display
         printpath = ' '
         pathopts = randint(3,9)
         for i in range(pathopts):
@@ -97,11 +92,9 @@ class InitialSetup(object):
         return printpath, pathopts
 
     def check_path(self, path, pathopts):
-        # ensure we have a number
-        try:
-            isinstance(int(path), int)
-            # ensure we have a defined path chosen
-            if (int(path) >=1 and int(path) <= pathopts):     
+        try:                                                                # ensure we have a number
+            isinstance(int(path), int)                                      # ensure we have a defined path chosen
+            if (int(path) >=1 and int(path) <= pathopts):
                 print('You have picked path ' + str(path), end='. \n')
                 return True
             else:
@@ -111,52 +104,52 @@ class InitialSetup(object):
             print('You did not pick a number, ' + self.name + '. I\'m a bit smarter than that.')
             return False
 
-    def retry_flow(self, user, validpath, initialpath):
+    def retry_flow(self, user, validpath, initialpath):                     # make sure user picks one of the opts
         retrycounter = 1
         while retrycounter < 3:
-            if validpath is False:                                      # confirm choice was still bad (i.e. str)
+            if validpath is False:                                          # confirm choice was still bad (i.e. str)
                 path = input('Please try to choose a valid option. \n')
                 retrycounter +=1
                 validpath = user.check_path(path, initialpath[1])
-                if validpath is False and retrycounter == 3:            # max retry and then exit
+                if validpath is False and retrycounter == 3:                # max retry and then exit
                     user.user_failure()
             else:
                 return validpath is True
 
-    def user_failure(self):
+    def user_failure(self):                                                 # too many failures causes game to quit
         print('You\'ve failed me for the last time, ' + self.name, end = '. '), \
         print('Let\'s try again when you want to play!')
-        time.sleep(3)
+        time.sleep(2)
         sys.exit()
     
     def randomroom(self, data, firstroom = True):
         prevrooms = []
         i = 1
-        if firstroom is False:                                  # ensure you can't get the winner first round
+        if firstroom is False:                                              # ensure you can't get the winner first round
             i = 0
-        room = randint(0, len(data['scenarios'])-1)             # grab a room and store the info
+        room = randint(0, len(data['scenarios'])-1)                         # grab a room and store the info
         while room in prevrooms:
-            room = randint(0, len(data['scenarios'])-1)         # reroll room if we've seen it before
+            room = randint(0, len(data['scenarios'])-1)                     # reroll room if we've seen it before
         prevrooms.append(room)
-        return data['scenarios'][room]                          # return all the relevant room info
+        return data['scenarios'][room]                                      # return all the relevant room info
 
     def playroom(self, user, roominfo):
-        i = 1                                                   # for the view!
+        i = 1                                                               # for user option viewability (1: X, 2: Y, etc.)
         print(roominfo['description'], end='\n')
         for opt in roominfo['options']:
             print(str(i) + ': ' + opt, end='\n')
             i+=1
         action = input()
-        valid_choice = user.check_input(action, (i-1))           #ensure they picked something
+        valid_choice = user.check_input(action, (i-1))                      # ensure they picked something
         retry = 1
         while valid_choice is False and retry < 3:                          # retry flow
             action = input()
-            valid_choice = user.check_input(action, (i-1))        # 3 trys before failure
+            valid_choice = user.check_input(action, (i-1))                  # 3 trys before failure
             if retry == 3:
                 user.user_failure()
             retry += 1
-        print(roominfo['outcome'][int(action)-1])               # show the outcome
-        return roominfo['result'][int(action)-1]                # store the results
+        print(roominfo['outcome'][int(action)-1])                           # show the outcome
+        return roominfo['result'][int(action)-1]                            # store the results
 
     def check_input(self, input, max):                                      # check user inputs for validity
         try:
@@ -175,6 +168,7 @@ class InitialSetup(object):
 
 ################################################################
 if __name__ == '__main__':
+    print('...loading...')
     initial = True
     main(initial)
 ################################################################

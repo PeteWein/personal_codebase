@@ -3,7 +3,7 @@ import scenario_generator, sys, json, time
 from os import path, system, name
 from random import randint
 from colorama import init
-from termcolor import cprint 
+#from termcolor import cprint 
 from pyfiglet import figlet_format
 import pdb
 ################################################################
@@ -23,42 +23,37 @@ TODO:
 def main(initial):
     while initial is True:
         init(strip=not sys.stdout.isatty())                                 # strip out any nasty business
-        # cprint(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))    # print the title! NOTE: .exe (end game) does not print ascii (non-binary)
-        print('Peter\'s Dungeon Crawl')
+        print(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))    # print the title! NOTE: .exe (end game) does not print ascii (non-binary)
         name = input('What is your name?\n')
         user = InitialSetup(name)
         data = user.generate_scenarios()                                    # bring in the data
         user.explain_rules()                                                # explain the rules of the game!
         initialpath = user.setup_path()
-        # cprint(figlet_format(initialpath[0], font='digital'))
-        print(initialpath[0])
+        print(figlet_format(initialpath[0], font='digital'))
         path = input('Please choose a path. \n')
         validpath = user.check_path(path, initialpath[1])    
         if validpath is False:                                              # path check flow
             user.retry_flow(user, validpath, initialpath)
-        roominfo = user.randomroom(path, data)
+        roominfo = user.randomroom(data)
         
         outcome = user.playroom(user, roominfo)                             # determine outcome
         while outcome is True and roominfo['id'] != 1:                      # continue playing loop
             continuepath = user.setup_path()
             user.clearscreen()
-            # cprint(figlet_format(continuepath[0], font='digital'))
-            print(continuepath[0])
+            print(figlet_format(continuepath[0], font='digital'))
             path_text = randint(0, len(data['flavor_moving'])-1)            # funny flavor text
             print(data['flavor_moving'][path_text], end='\n')
             path = input()
             validpath = user.check_path(path, continuepath[1])    
             if validpath is False:                                          # path check flow
                 user.retry_flow(user, validpath, continuepath)
-            roominfo = user.randomroom(path, data)
+            roominfo = user.randomroom(data, False)
             outcome = user.playroom(user, roominfo)                         
 
         if outcome is True and roominfo['id'] == 1:                         # you win!
-            # cprint(figlet_format('Congrats!\n You have won!'))
-            print('you have won')
+            print(figlet_format('Congrats!\n You have won!'))
         else:                                                               # you lose
-            # cprint(figlet_format('You have died.'))
-            print('you have died')
+            print(figlet_format('You have died.'))
         choice = input('Would you like to play again?\n 1: Yes \n 2: No\n')
         if int(choice) == 1:                                                # continue if you want to
             user.clearscreen()
@@ -134,8 +129,11 @@ class InitialSetup(object):
         time.sleep(3)
         sys.exit()
     
-    def randomroom(self, path, data):
+    def randomroom(self, data, firstroom = True):
         prevrooms = []
+        i = 1
+        if firstroom is False:                                  # ensure you can't get the winner first round
+            i = 0
         room = randint(0, len(data['scenarios'])-1)             # grab a room and store the info
         while room in prevrooms:
             room = randint(0, len(data['scenarios'])-1)         # reroll room if we've seen it before

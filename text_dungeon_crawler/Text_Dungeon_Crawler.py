@@ -36,6 +36,7 @@ def main(initial):
         outcome = user.playroom(user, roominfo)                             # determine outcome
         while outcome is True and roominfo['id'] != 1:                      # continue playing loop
             continuepath = user.setup_path()
+            input('Press Enter to continue exploring the dungeon...\n')     # allow user to read results
             user.clearscreen()
             print(figlet_format(continuepath[0], font='digital'))
             path_text = randint(0, len(data['flavor_moving'])-1)            # funny flavor text
@@ -68,8 +69,7 @@ class InitialSetup(object):
     def clearscreen(self):   
         if name == 'nt':                                                    # for windows 
             _ = system('cls') 
-        # for mac and linux(here, os.name is 'posix') 
-        else: 
+        else:                                                               # for mac and linux(here, os.name is 'posix') 
             _ = system('clear') 
     
     def generate_scenarios(self):                                           # generate scenarios json if it doesn't exist
@@ -127,7 +127,7 @@ class InitialSetup(object):
         i = 1
         if firstroom is False:                                              # ensure you can't get the winner first round
             i = 0
-        room = randint(0, len(data['scenarios'])-1)                         # grab a room and store the info
+        room = randint(i, len(data['scenarios'])-1)                         # grab a room and store the info
         while room in prevrooms:
             room = randint(0, len(data['scenarios'])-1)                     # reroll room if we've seen it before
         prevrooms.append(room)
@@ -168,7 +168,6 @@ class InitialSetup(object):
 
 ################################################################
 if __name__ == '__main__':
-    print('...loading...')
     initial = True
     main(initial)
 ################################################################

@@ -3,7 +3,6 @@ import scenario_generator, sys, json, time
 from os import path, system, name
 from random import randint
 from colorama import init
-#from termcolor import cprint 
 from pyfiglet import figlet_format
 import pdb
 ################################################################
@@ -15,6 +14,7 @@ TODO:
 -add in rules explanation
 -add keyword matching (help, exit)
 -add home screen
+-add ascii art for each room (?)
 
 """
 ################################################################
@@ -72,11 +72,8 @@ class InitialSetup(object):
         else:                                                               # for mac and linux(here, os.name is 'posix') 
             _ = system('clear') 
     
-    def generate_scenarios(self):                                           # generate scenarios json if it doesn't exist
-        if not path.isfile('scenarios.json'):
-            scenario_generator
-        with open('scenarios.json') as json_file:  
-            data = json.load(json_file)
+    def generate_scenarios(self):                                           # generate scenarios
+        data = scenario_generator.main()
         return data
 
     def explain_rules(self):

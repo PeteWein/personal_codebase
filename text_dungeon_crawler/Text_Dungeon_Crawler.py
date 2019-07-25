@@ -20,12 +20,11 @@ TODO:
 ################################################################
 def main(initial):
     while initial is True:
-        init(strip=not sys.stdout.isatty())                                 # strip out any nasty business
-        print(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))     # title
+        InitialSetup('start').title_screen()
         name = input('What is your name?\n')
         user = InitialSetup(name)
         data = user.generate_scenarios()                                    # bring in the data
-        user.explain_rules()                                                # explain the rules of the game!
+        # user.explain_rules()                                                # explain the rules of the game!
         initialpath = user.setup_path()
         print(figlet_format(initialpath[0], font='digital'))
         path = input('Please choose a path. \n')
@@ -75,10 +74,20 @@ class InitialSetup(object):
     def generate_scenarios(self):                                           # generate scenarios
         data = scenario_generator.main()
         return data
+    
+    def title_screen(self):
+        init(strip=not sys.stdout.isatty())                                 # strip out any nasty business
+        print(figlet_format('Peter\'s Dungeon Crawl', font='starwars'))     # title
+        InitialSetup(self).explain_rules()
+        st = input('\tPress ENTER to continue, EXIT to quit\n')
+        if st.lower() == 'exit':                                            # opt to exit at title screen
+            sys.exit()
+        InitialSetup(self).clearscreen()
 
     def explain_rules(self):
-        print('\nWell hello there, ' + self.name + '!',end = '\n\n')
-        print('This is where the rules will go.', end = '\n')        
+        print('Your objective is to find the treasure hiding.', end = '\n'), 
+        print('somewhere in this dungeon and escape. Be careful, as it ', end = '\n'),
+        print('can be a very dangeous place. Good luck...', end='\n\n')
 
     def setup_path(self):                                                   # set up doors for display
         printpath = ' '

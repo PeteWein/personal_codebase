@@ -10,12 +10,9 @@ import pdb
 TODO:
 -add more flavor text
 -add scenario creative content (in the scenario generator script)
--either encode file (so users can't see it) or ensure script doesn't output a file
--add in rules explanation
 -add keyword matching (help, exit)
--add home screen
 -add ascii art for each room (?)
-
+-add music (?)
 """
 ################################################################
 def main(initial):
@@ -24,11 +21,10 @@ def main(initial):
         name = input('What is your name?\n')
         user = InitialSetup(name)
         data = user.generate_scenarios()                                    # bring in the data
-        # user.explain_rules()                                                # explain the rules of the game!
         initialpath = user.setup_path()
         print(figlet_format(initialpath[0], font='digital'))
         path = input('Please choose a path. \n')
-        validpath = user.check_path(path, initialpath[1])    
+        validpath = user.check_input(path, initialpath[1])    
         if validpath is False:                                              # path check flow
             user.retry_flow(user, validpath, initialpath)
         roominfo = user.randomroom(data)
@@ -41,7 +37,7 @@ def main(initial):
             path_text = randint(0, len(data['flavor_moving'])-1)            # funny flavor text
             print(data['flavor_moving'][path_text], end='\n')
             path = input()
-            validpath = user.check_path(path, continuepath[1])    
+            validpath = user.check_input(path, continuepath[1])    
             if validpath is False:                                          # path check flow
                 user.retry_flow(user, validpath, continuepath)
             roominfo = user.randomroom(data, False)
@@ -97,17 +93,17 @@ class InitialSetup(object):
             printpath = printpath + str(i) + ' '
         return printpath, pathopts
 
-    def check_path(self, path, pathopts):
-        try:                                                                # ensure we have a number
-            isinstance(int(path), int)                                      # ensure we have a defined path chosen
-            if (int(path) >=1 and int(path) <= pathopts):
-                print('You have picked path ' + str(path), end='. \n')
+    def check_input(self, input, max):                                      # check user inputs for validity
+        try:
+            isinstance(int(input), int)                                     # ensure we have a defined path chosen
+            if (int(input) >=1 and int(input) <= max):     
                 return True
             else:
-                print ('You did not pick a valid path, ' + self.name, end = '. ')
+                print ('You did not pick a valid option, ' + self.name, end = '.\n')
                 return False
         except:
-            print('You did not pick a number, ' + self.name + '. I\'m a bit smarter than that.')
+            print('You did not pick a number, ' + self.name, end = '. '), \
+            print('I\'m a bit smarter than that.', end = '\n')
             return False
 
     def retry_flow(self, user, validpath, initialpath):                     # make sure user picks one of the opts
@@ -116,7 +112,7 @@ class InitialSetup(object):
             if validpath is False:                                          # confirm choice was still bad (i.e. str)
                 path = input('Please try to choose a valid option. \n')
                 retrycounter +=1
-                validpath = user.check_path(path, initialpath[1])
+                validpath = user.check_input(path, initialpath[1])
                 if validpath is False and retrycounter == 3:                # max retry and then exit
                     user.user_failure()
             else:
@@ -156,20 +152,6 @@ class InitialSetup(object):
             retry += 1
         print(roominfo['outcome'][int(action)-1])                           # show the outcome
         return roominfo['result'][int(action)-1]                            # store the results
-
-    def check_input(self, input, max):                                      # check user inputs for validity
-        try:
-            isinstance(int(input), int)
-            # ensure we have a defined path chosen
-            if (int(input) >=1 and int(input) <= max):     
-                return True
-            else:
-                print ('You did not pick a valid option, ' + self.name, end = '.\n')
-                return False
-        except:
-            print ('You did not pick a valid option, ' + self.name, end = '.\n')
-            return False
-
 
 
 ################################################################

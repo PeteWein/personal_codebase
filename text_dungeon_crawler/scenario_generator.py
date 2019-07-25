@@ -255,7 +255,10 @@ def main():
     data['flavor_moving'] = [
         "You see another path open before you, as if the dungeon is mocking you.",
         "These rooms seem somewhat similar to the previous set...have you been here before?",
-        "Are the rooms...moving as you move? It's as if this dungeon is alive."
+        "Are the rooms...moving as you move? It's as if this dungeon is alive.",
+        "You continue onwards, deeper into the dungeon's secret passages.",
+        "You pass a few more passages, they all look so similar, this whole place is a maze.",
+        "You pass dozens of similar rooms and passages, most of which probably lead to other depths of this dungeon."
     ]
 
     return data

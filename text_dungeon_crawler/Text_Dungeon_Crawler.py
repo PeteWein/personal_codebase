@@ -13,6 +13,7 @@ TODO:
 -add keyword matching (help, exit)
 -add ascii art for each room (?)
 -add music (?)
+-prevroom logic overwriting itself
 """
 ################################################################
 def main(initial):
@@ -34,8 +35,8 @@ def main(initial):
             input('Press Enter to continue exploring the dungeon...\n')     # allow user to read results
             user.clearscreen()
             print(figlet_format(continuepath[0], font='digital'))
-            path_text = randint(0, len(data['flavor_moving'])-1)            # funny flavor text
-            print(data['flavor_moving'][path_text], end='\n')
+            path_text = randint(0, len(data['flavor_text'])-1)            # funny flavor text
+            print(data['flavor_text'][path_text], end='\n')
             path = input()
             validpath = user.check_input(path, continuepath[1])    
             if validpath is False:                                          # path check flow

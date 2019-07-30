@@ -28,7 +28,8 @@ def main(initial):
         validpath = user.check_input(path, initialpath[1])    
         if validpath is False:                                              # path check flow
             user.retry_flow(user, validpath, initialpath)
-        roominfo = user.randomroom(data)
+        prevrooms = []
+        roominfo = user.randomroom(data, prevrooms)
         outcome = user.playroom(user, roominfo)                             # determine outcome
         while outcome is True and roominfo['id'] != 1:                      # continue playing loop
             continuepath = user.setup_path()
@@ -41,13 +42,12 @@ def main(initial):
             validpath = user.check_input(path, continuepath[1])    
             if validpath is False:                                          # path check flow
                 user.retry_flow(user, validpath, continuepath)
-            roominfo = user.randomroom(data, False)
+            roominfo = user.randomroom(data, prevrooms, False)
             outcome = user.playroom(user, roominfo)                         
-
         if outcome is True and roominfo['id'] == 1:                         # you win!
-            print(figlet_format('Congrats!\n You have won!'))
+            user.win_scenario()
         else:                                                               # you lose
-            print(figlet_format('You have died.'))
+            user.lose_scenario()
         choice = input('Would you like to play again?\n 1: Yes \n 2: No\n')
         if int(choice) == 1:                                                # continue if you want to
             user.clearscreen()
@@ -119,14 +119,13 @@ class InitialSetup(object):
             else:
                 return validpath is True
 
-    def user_failure(self):                                                 # too many failures causes game to quit
+    def user_failure(self):                                                 # too many input failures causes game to quit
         print('You\'ve failed me for the last time, ' + self.name, end = '. '), \
         print('Let\'s try again when you want to play!')
         time.sleep(2)
         sys.exit()
     
-    def randomroom(self, data, firstroom = True):
-        prevrooms = []
+    def randomroom(self, data, prevrooms, firstroom = True):
         i = 1
         if firstroom is False:                                              # ensure you can't get the winner first round
             i = 0
@@ -153,6 +152,12 @@ class InitialSetup(object):
             retry += 1
         print(roominfo['outcome'][int(action)-1])                           # show the outcome
         return roominfo['result'][int(action)-1]                            # store the results
+    
+    def win_scenario(self):                                                 # happens on win
+        print(figlet_format('Congrats ' + self.name + '!\n You have won!'))
+
+    def lose_scenario(self):                                                # happens on loss
+        print(figlet_format('You have died.'))
 
 
 ################################################################

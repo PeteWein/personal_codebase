@@ -13,6 +13,7 @@ TODO:
 -add keyword matching (help, exit)
 -add ascii art for each room (?)
 -add music (?)
+-prevroom logic overwriting itself
 """
 ################################################################
 def main(initial):
@@ -53,8 +54,6 @@ def main(initial):
         else:                                                               # break out if not
             initial = False
             sys.exit()
-            
-
 
 ################################################################
 class InitialSetup(object):

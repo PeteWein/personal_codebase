@@ -72,13 +72,13 @@ def main():
                 "As you speak the answer, the stone slab moves aside and allows you to pass.",
                 "As you speak the answer, you begin to feel light headed...",
                 "As you speak the answer, you begin to feel light headed...",
-                "As you begin pushing, the stone slab falls with inhuman force on top of you..."
+                "As you begin pushing, the stone slab falls with inhuman force near you.\nWith quick reflexes you are able to avoid the slab and pass forward."
             ],
             "result": [
                 True,
                 False,
                 False,
-                False
+                True
             ]
         },
         {
@@ -133,6 +133,26 @@ def main():
                 True,
                 False,
                 False
+            ]
+        },
+        {
+            "id": 8, 
+            "description": "An old witch sits next to a bubbling cauldron. She crooks a finger at you and screeches,\n\"You! Come here...I have a very special potion for you.\"\nShe looks at you expectedly, as if demanding an answer. 
+            "options": [
+                "Drink the old witch's potion", 
+                "Politely refuse, mentioning you will drink it again if you pass her later", 
+                "What\'s in the potion? Who\'s to say?"
+            ],
+            "outcome": [
+                "You begin to feel...fuzzy. As if your body isn\'t entirely stable. After a few grueling moments pass, you begin to feel normal again.",
+                "She looks disappointed, but not defeated. She returns to her bubbling brew and you are able to pass unhindered.",
+                "The witch looks at you, confused by your response. In her confusion she begins to contemplate, allowing you to pass freely."
+            ],
+            "result": [
+                True,
+                True,
+                True,
+                True
             ]
         }
     ]

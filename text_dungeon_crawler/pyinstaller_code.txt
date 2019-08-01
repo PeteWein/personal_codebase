@@ -1,0 +1,4 @@
+pyinstaller --add-data "C:/python3/Lib/site-packages/pyfiglet;./pyfiglet" --icon="C:/Users/Home/Desktop/git_repo/personal_codebase/text_dungeon_crawler/dungeon_crawler_icon.ico" Text_Dungeon_Crawler.py
+
+https://www.wizards.com/dnd/drdg/index.htm
+

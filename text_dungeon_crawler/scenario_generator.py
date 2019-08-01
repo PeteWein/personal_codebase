@@ -1,6 +1,4 @@
 #######################################
-import json 
-#######################################
 def main():
     data = {}
     data['scenarios'] = [
@@ -91,8 +89,8 @@ def main():
                 "Take the right door", 
             ],
             "outcome": [
-                "You go through the doorway and see the path immediately group back up with the right doorway.\nWhat a waste of time.",
-                "You go through the doorway and see the path immediately group back up with the left doorway.\nWhat a waste of time."
+                "You go through the doorway and see the path immediately groups back up with the right doorway.\nWhat a waste of time.",
+                "You go through the doorway and see the path immediately groups back up with the left doorway.\nWhat a waste of time."
             ],
             "result": [
                 True,
@@ -135,120 +133,6 @@ def main():
                 True,
                 False,
                 False
-            ]
-        },
-        {
-            "id": 8, 
-            "description": "Scenario 3", 
-            "options": [
-                "Opt 1", 
-                "Opt 2", 
-                "Opt 3"
-            ],
-            "outcome": [
-                "Out 1",
-                "Out 2",
-                "Out 3"
-            ],
-            "result": [
-                False,
-                True,
-                False,
-            ]
-        },
-        {
-            "id": 9, 
-            "description": "Scenario 3", 
-            "options": [
-                "Opt 1", 
-                "Opt 2", 
-                "Opt 3"
-            ],
-            "outcome": [
-                "Out 1",
-                "Out 2",
-                "Out 3"
-            ],
-            "result": [
-                False,
-                True,
-                False,
-            ]
-        },
-        {
-            "id": 10, 
-            "description": "Scenario 3", 
-            "options": [
-                "Opt 1", 
-                "Opt 2", 
-                "Opt 3"
-            ],
-            "outcome": [
-                "Out 1",
-                "Out 2",
-                "Out 3"
-            ],
-            "result": [
-                False,
-                True,
-                False,
-            ]
-        },
-        {
-            "id": 11, 
-            "description": "Scenario 3", 
-            "options": [
-                "Opt 1", 
-                "Opt 2", 
-                "Opt 3"
-            ],
-            "outcome": [
-                "Out 1",
-                "Out 2",
-                "Out 3"
-            ],
-            "result": [
-                False,
-                True,
-                False,
-            ]
-        },
-        {
-            "id": 12, 
-            "description": "Scenario 3", 
-            "options": [
-                "Opt 1", 
-                "Opt 2", 
-                "Opt 3"
-            ],
-            "outcome": [
-                "Out 1",
-                "Out 2",
-                "Out 3"
-            ],
-            "result": [
-                False,
-                True,
-                False,
-            ]
-        },
-        {
-            "id": 13, 
-            "description": "Scenario 3", 
-            "options": [
-                "Opt 1", 
-                "Opt 2", 
-                "Opt 3"
-            ],
-            "outcome": [
-                "Out 1",
-                "Out 2",
-                "Out 3"
-            ],
-            "result": [
-                False,
-                True,
-                False,
             ]
         }
     ]

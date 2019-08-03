@@ -137,7 +137,7 @@ def main():
         },
         {
             "id": 8, 
-            "description": "An old witch sits next to a bubbling cauldron. She crooks a finger at you and screeches,\n\"You! Come here...I have a very special potion for you.\"\nShe looks at you expectedly, as if demanding an answer. 
+            "description": "An old witch sits next to a bubbling cauldron. She crooks a finger at you and screeches,\n\"You! Come here...I have a very special potion for you.\"\nShe looks at you expectedly, as if demanding an answer.",
             "options": [
                 "Drink the old witch's potion", 
                 "Politely refuse, mentioning you will drink it again if you pass her later", 

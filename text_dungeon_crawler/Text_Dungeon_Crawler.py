@@ -14,7 +14,7 @@ TODO:
 -add music (?)
 """
 ################################################################
-def main(initial):
+def main():
     initial = True
     while initial is True:
         InitialSetup('start').title_screen()

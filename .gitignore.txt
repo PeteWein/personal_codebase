@@ -1,5 +1,5 @@
 # Don't track content of these folders
-__pycache__/
+*/__pycache__/
 
 # Compiled source #
 ###################
@@ -8,7 +8,7 @@ __pycache__/
 *.dll
 *.exe
 *.ico
-
+*.vscode
 
 # Packages #
 ############

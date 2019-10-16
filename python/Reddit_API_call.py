@@ -1,10 +1,11 @@
 import sys, datetime, json, requests, time
 
-# The goal is to do a basic API call to our user and see their info.
-# It can definitely be improved (i.e. sort by top to determine top comment)
-# this call is limited to what is stored on the reddit API (I believe there's a time frame limit or last 1000 limit)
-
-def main():                           
+def main():
+    """
+    The goal is to do a basic API call to our user and see their info.
+    It can definitely be improved (i.e. sort by top to determine top comment)
+    this call is limited to what is stored on the reddit API (I believe there's a time frame limit or last 1000 limit)
+    """
     user = input('What username would you like to look up? ')
     userlist = UserInfo(user)
     try:

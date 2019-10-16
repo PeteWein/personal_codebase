@@ -15,6 +15,7 @@ TODO:
 """
 ################################################################
 def main(initial):
+    initial = True
     while initial is True:
         InitialSetup('start').title_screen()
         name = input('What is your name?\n')
@@ -158,6 +159,5 @@ class InitialSetup(object):
 
 ################################################################
 if __name__ == '__main__':
-    initial = True
-    main(initial)
+    main()
 ################################################################

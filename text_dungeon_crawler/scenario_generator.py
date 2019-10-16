@@ -1,5 +1,14 @@
 #######################################
 def main():
+    """
+    This contains all of the text data for the adventure. It is a json object structured as:
+    scenarios (dict): contains all scenario data
+    id (int): id for each scenario
+    description (str): description for user to see about room
+    options (list): available options for user in reponse to description
+    outcome (list): outcome for each option
+    result (bool): used to determine if option/outcome is successful and to move on
+    """
     data = {}
     data['scenarios'] = [
         {

@@ -151,9 +151,11 @@ class InitialSetup(object):
         return roominfo['result'][int(action)-1]                            # store the results
     
     def win_scenario(self):                                                 # happens on win
+        time.sleep(3)
         print(figlet_format('Congrats ' + self.name + '!\n You have won!'))
 
     def lose_scenario(self):                                                # happens on loss
+        time.sleep(3)
         print(figlet_format('You have died.'))
 
 

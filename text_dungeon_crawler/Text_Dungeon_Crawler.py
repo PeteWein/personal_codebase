@@ -48,8 +48,12 @@ def main():
         else:                                                               # you lose
             user.lose_scenario()
         choice = input('Would you like to play again?\n 1: Yes \n 2: No\n')
-        if int(choice) == 1 or choice.lower() == 'yes':                     # continue if you want to
-            user.clearscreen()
+        if isinstance(choice, int):                                         # continue if you want to
+            if int(choice) == 1:
+                user.clearscreen()
+        elif isinstance(choice, str):
+            if  choice.lower() == 'yes':
+                user.clearscreen()
         else:                                                               # break out if not
             initial = False
             sys.exit()

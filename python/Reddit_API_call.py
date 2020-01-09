@@ -71,6 +71,11 @@ class UserInfo(object):
             print('Error ' + str(data['error']) + ': ' + data['message'], end='')
             sys.exit()
         return comment_count, total_score, max_score, max_score_comment, max_score_link
+    
+    def __str__(self):
+        return str(self.__class__) + '\n' + '\n'.join(('{} = {}'.format(item, self.__dict__[item]) for item in sorted(self.__dict__)))
+    def __repr__(self):
+        return 'UserInfo("%s")' % (self.user)
 
 
 if __name__ == '__main__':
